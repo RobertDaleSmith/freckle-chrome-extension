@@ -208,9 +208,10 @@ function addAccount(name){
 }
 
 function removeAccount(name){
-  document.getElementById(name).remove();
+  console.log(name);
+  document.getElementById(accountNameToID(name)).remove();
   for(var i=0; i<accountList.length; i++){
-    if(accountNameToID(accountList[i].name) == name){
+    if(accountNameToID(accountList[i].name) == accountNameToID(name)){
       accountList.splice(i, 1);
       break;
     }
