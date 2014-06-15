@@ -56,7 +56,7 @@ function showAddNewAccountEvent(nameVal){
       if(!nameVal){
         document.getElementById("create_project_title").textContent = "Add a New Account";
       } else {
-        editAccountName = accountNameToID(nameVal);
+        editAccountName = accountNameToID(nameVal).replace("id_","");
         document.getElementById("create_project_title").textContent = "Edit Account";
         document.getElementById("deleteExisting").style.display = "block";
         document.getElementById("new_project_name").value = nameVal;
@@ -221,10 +221,18 @@ function removeAccount(name){
 
 function updateAccount(oldName, newName){
   var updateID = oldName.split(' ').join('').toLowerCase()
-  var liElement = document.getElementById(updateID);
+  var liElement = document.getElementById(accountNameToID(oldName));
   liElement.getElementsByClassName("account-title")[0].textContent = newName;
   liElement.id = accountNameToID(newName);
+
+  for(var i=0; i<accountList.length; i++){
+    if(accountNameToID(accountList[i].name) == accountNameToID(oldName)){
+      accountList[i].name = newName;
+      break;
+    }
+  }
   //Update in local storage.
+  localStorage["organisation-list"] = JSON.stringify(accountList);
 }
 
 function accountNameToID(name){
