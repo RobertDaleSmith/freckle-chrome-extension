@@ -1,17 +1,50 @@
 <html>
-<head>
-  <title>Freckle Chrome</title>
-  <link rel="stylesheet" href="style.css" type="style/css" />
-</head>
+	<head>
+	  <title>Freckle Chrome</title>
+	  <link rel="stylesheet" href="style.css" type="style/css" />
+	</head>
 
-<body>
-<div id="container">
-  <div id="error">You need to set your organisation name in Freckly Chrome options (right click on the icon)"</div>
-  <iframe id="timer" style="border:none;" src=""></iframe>
-  </body>
-</div>
+	<body>
+		<div id="container">
+			<div id="error">
+				<div id="projects">
+			    <ul id="account-list"></ul>
+			</div>
 
-<script src="popup.js"></script>
+			<div id="freckle_menu_bar">
+			    <a href="http://letsfreckle.com/" id="freckle_timer" target="_blank"><img alt="Logo2x" src="logo2x.png"></a>
+			    <a href="#" id="add_new_account">+ Account</a>    
+			</div>
+
+			<div id="toolbar">
+				<!-- <div id="search_wrapper" class="focused">
+					<input type="text" id="search" placeholder="Search projects">
+					<i class="icon-search"></i>
+			    </div> -->
+			</div>
+
+			<div id="curtain" style="top: 32px; z-index: 100000; opacity:0; display:none;"></div>
+
+			<div id="create_project" style="">
+			    <label>
+			    	<div id="create_project_title">Add a New Account</div> <span>or</span> <a href="#" id="cancel_new_project">Cancel</a>
+			    	<span id="deleteExisting" style="display:none;"><span>or</span> <a href="#" id="remove_account">Discard</a></span>
+			    </label>
+			
+			    <div id="new_project_name_wrapper">
+			      <input type="text" id="new_project_name" placeholder="AccountName.letsfreckle.com" maxlength="100">
+			    </div>
+			
+			    <a href="#" id="save_new_project"><i class="icon-checkmark"></i></a>
+			</div>	
+
+		</div>
+			
+		<iframe id="timer" style="border:none;" src=""></iframe>
+			
+		<a href="#" id="show_accounts_btn" style="display:none;"><i class="icon-cog2"></i></a>
+
+	</body>
+	<script src="popup.js"></script>
 
 </html>
-

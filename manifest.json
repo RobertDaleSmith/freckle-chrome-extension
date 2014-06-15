@@ -1,16 +1,21 @@
 {
   "manifest_version": 2,
-
-  "name": "Freckle Chrome",
-  "description": "This extension adds a button for the freckle timer to your Chrome toolbar.",
-  "version": "1.0",
-  "options_page": "options.html",
-  "icons": { "16": "icon-16.png",
+  "name": "Freckle",
+  "description": "Freckle at your fingertips — access your Freckle timers from your Chrome menu bar with one click or one quick keyboard shortcut.",
+  "version": "1.0.1",
+  "icons": { "19": "icon-19.png",
              "48": "icon-48.png",
             "128": "icon-128.png" },
-
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icon-19.png",
     "default_popup": "popup.html"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      }
+    }
   }
 }

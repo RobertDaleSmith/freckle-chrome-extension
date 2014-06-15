@@ -1,4 +1,6 @@
 freckle-chrome-extension
 ==============
 
-Basic chrome extension to bring up the Freckle timer.
+Chrome extension to bring up the Freckle timer into a Chrome browser action popup.
+
+..Easily add and manage multiple Freckle accounts.
