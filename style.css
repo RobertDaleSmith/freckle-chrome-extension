@@ -394,7 +394,7 @@ color: #fff;
   display: block;
   position: fixed;
   bottom:8px;
-  right:76px;
+  left: 215px;
   z-index: 1000010;
   text-align: center;
 
