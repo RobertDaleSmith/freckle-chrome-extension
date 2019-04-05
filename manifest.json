@@ -1,11 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Freckle Unofficial Extension",
-  "description": "Freckle at your fingertips — access your Freckle timers from your Chrome menu bar with one click or one quick keyboard shortcut.",
-  "version": "1.0.8",
-  "icons": { "19": "icon-19.png",
-             "48": "icon-48.png",
-            "128": "icon-128.png" },
+  "name": "Noko Timer Unofficial Extension",
+  "description": "Noko Timer at your fingertips — access your Noko timers from your Chrome menu bar with one click or one quick keyboard shortcut.",
+  "version": "1.1.0",
+  "icons": {
+    "19": "icon-19.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
   "browser_action": {
     "default_icon": "icon-19.png",
     "default_popup": "popup.html"
@@ -13,7 +15,8 @@
   "permissions":[
     "webRequest",
     "webRequestBlocking",
-    "https://*.letsfreckle.com/"
+    "https://*.letsfreckle.com/",
+    "https://*.nokotime.com/"
   ],
   "commands": {
     "_execute_browser_action": {
