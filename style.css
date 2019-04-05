@@ -219,7 +219,7 @@ ol, ul {
 
 
 
-  #freckle_menu_bar
+  #noko_menu_bar
 {
   display: block;
   position:fixed;
@@ -237,24 +237,24 @@ ol, ul {
   background:-ms-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
   background:linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f)
 }
-  #freckle_menu_bar a
+  #noko_menu_bar a
 {
   text-decoration:none;
   
 }
-  #freckle_timer
+  #noko_timer
 {
   position:absolute;
   display:block;
   left:8px;
   top:1px
 }
-  #freckle_timer img
+  #noko_timer img
 {
   width:98px;
   height:29px
 }
-  #freckle_menu_bar img.avatar
+  #noko_menu_bar img.avatar
 {
   position:relative;
   top:8px;

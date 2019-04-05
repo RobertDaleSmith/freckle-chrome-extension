@@ -110,6 +110,7 @@ function addNewAccountEvent(){
   var newAccountName = document.getElementById("new_project_name").value;
   newAccountName = newAccountName.replace("https://","").replace("http://","");
   newAccountName = newAccountName.split(".letsfreckle.com")[0];
+  newAccountName = newAccountName.split(".nokotime.com")[0];
   if((newAccountName != "" && GetElementInsideContainer("account-list", accountNameToID(newAccountName)) == null) || 
      (newAccountName != "" && accountNameToID(newAccountName) == accountNameToID(editAccountName)) ) {
     if(editAccountName == ""){
@@ -237,7 +238,9 @@ function updateAccount(oldName, newName){
 }
 
 function accountNameToID(name){
-  return "id_" + name.replace("https://","").replace(".letsfreckle.com/","").replace(".letsfreckle.com","")
+  return "id_" + name.replace("https://","")
+              .replace(".letsfreckle.com/","").replace(".letsfreckle.com","")
+              .replace(".nokotime.com/","").replace(".nokotime.com","")
              .split('!').join('').split(',').join('').split('/').join('').split('\\').join('')
              .split('[').join('').split(']').join('').split('{').join('').split('}').join('')
              .split('?').join('').split('.').join('').split(',').join('').split('$').join('')
@@ -247,7 +250,7 @@ function accountNameToID(name){
 
 function connectToAccount(name){
   document.getElementById("container").className = "";
-  document.getElementById("timer").setAttribute("src","https://" + name + ".letsfreckle.com/timer");
+  document.getElementById("timer").setAttribute("src","https://" + name + ".nokotime.com/timer");
   document.getElementById("show_accounts_btn").style.display = "block";
   localStorage["organisation-name"] = name;
 }
