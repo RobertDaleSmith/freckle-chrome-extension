@@ -30,14 +30,10 @@ body {
   width: 100%;
   height:100%;
   font-family: OpenSans,Arial,sans-serif;
-  /*font-size: 14px;*/
-}
-* {
-text-rendering: optimizeLegibility;
 }
 
-.options {
-  /*width: 450px;*/
+* {
+	text-rendering: optimizeLegibility;
 }
 
 #error {
@@ -69,7 +65,6 @@ text-rendering: optimizeLegibility;
   height: 100%;
 }
 
-
 #curtain {
   position: fixed;
   background: rgba(0,0,0,.7);
@@ -82,22 +77,23 @@ text-rendering: optimizeLegibility;
 }
 
 #new_project_name {
-font-size: 14px;
-font-family: inherit;
-color: #666;
-border: none;
-background: #fff;
-padding: 7px;
-position: relative;
-width: 100%;
-height: 100%;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
--ms-box-sizing: border-box;
-box-sizing: border-box;
+	font-size: 14px;
+	font-family: inherit;
+	color: #666;
+	border: none;
+	background: #fff;
+	padding: 7px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 #new_project_name:focus{
-    outline: 0;
+  outline: 0;
 }
 
 #create_project_title{
@@ -120,10 +116,8 @@ box-sizing: border-box;
   position: relative;
   color: #787878;
   margin: 9px 10px 0 10px;
-
   cursor: pointer;
   border-radius: 10px;
-
   height: 39px;
   width: calc(100% - 20px);
 }
@@ -137,6 +131,7 @@ ul {
   width: 100%;
   position: relative;
 }
+
 ol, ul {
   list-style: none;
 }
@@ -152,7 +147,6 @@ ol, ul {
   color: #000;
   box-shadow: 0 0 0 2px #ccc;
 }
-
 
 .project .project-name {
   overflow-x: hidden;
@@ -207,8 +201,8 @@ ol, ul {
 }
 
 #save_new_project i {
-  display:block;
-  margin-top:6px;
+  display: block;
+  margin-top: 6px;
 }
 
 .project:hover {
@@ -216,62 +210,52 @@ ol, ul {
   box-shadow: 0 0 0 2px #ccc;
 }
 
-
-
-
-  #noko_menu_bar
-{
+#noko_menu_bar {
   display: block;
-  position:fixed;
-  top:0;
-  left:0;
-  height:32px;
-  width:100%;
-  z-index:100005;
-  text-align:center;
-  line-height:15px;
-  background:#e5467f;
-  background:-webkit-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#be0344),color-stop(0.0088,#be0344),color-stop(0.00881,rgba(229,70,127,0.91)),color-stop(1,#e5467f));
-  background:-moz-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background:-ms-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background:linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f)
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 32px;
+  width: 100%;
+  z-index: 100005;
+  text-align: center;
+  line-height: 15px;
+  background: #e5467f;
+  background: -webkit-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
+  background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#be0344),color-stop(0.0088,#be0344),color-stop(0.00881,rgba(229,70,127,0.91)),color-stop(1,#e5467f));
+  background: -moz-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
+  background: -ms-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
+  background: linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f)
 }
-  #noko_menu_bar a
-{
-  text-decoration:none;
-  
+
+#noko_menu_bar a {
+  text-decoration: none;
 }
-  #noko_timer
-{
-  position:absolute;
-  display:block;
-  left:8px;
-  top:1px
+
+#noko_timer {
+  position: absolute;
+  display: block;
+  left: 8px;
+  top: 1px
 }
-  #noko_timer img
-{
+
+#noko_timer img {
   width:98px;
   height:29px
 }
-  #noko_menu_bar img.avatar
-{
-  position:relative;
-  top:8px;
-  margin-top:-4px;
-  border-radius:50px
+
+#noko_menu_bar img.avatar {
+  position: relative;
+  top: 8px;
+  margin-top: -4px;
+  border-radius: 50px
 }
 
-
-
-
 #add_new_account {
-
   display: block;
   position: absolute;
   width: 63px;
   height: 21px;
-
   right: 5px;
   top: 5px;
   line-height: 20px;
@@ -282,11 +266,9 @@ ol, ul {
   text-align: center;
   font-size: 12px;
   background: rgba(255,255,255,0.15);
-  
 }
 
 #add_new_account:hover {
-
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
@@ -311,6 +293,7 @@ ol, ul {
   background: -ms-linear-gradient(#76d9eb,#37bbd2);
   background: linear-gradient(#76d9eb,#37bbd2);
 }
+
 #create_project label {
   font-size: 14px;
   color: #fff;
@@ -319,11 +302,13 @@ ol, ul {
   left: 11px;
   width:calc(100% - 72px);
 }
+
 #create_project span {
-color: #c4ebf4;
+	color: #c4ebf4;
 }
+
 #create_project label a {
-color: #fff;
+	color: #fff;
 }
 
 #toolbar {
@@ -345,50 +330,46 @@ color: #fff;
   background: linear-gradient(#b2b2b2,#b2b2b2 1%,rgba(248,248,248,0.925) 1.01%,#f8f8f8);
 }
 
-
-
 #new_project_name_wrapper {
-position: absolute;
-display: block;
-top: 28px;
-left: 10px;
-right: 60px;
+	position: absolute;
+	display: block;
+	top: 28px;
+	left: 10px;
+	right: 60px;
 }
 
 #new_project_name {
-font-size: 14px;
-font-family: inherit;
-color: #666;
-border: none;
-background: #fff;
-padding: 7px;
-position: relative;
-width: 100%;
-height: 100%;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
--ms-box-sizing: border-box;
-box-sizing: border-box;
+	font-size: 14px;
+	font-family: inherit;
+	color: #666;
+	border: none;
+	background: #fff;
+	padding: 7px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #save_new_project {
-position: absolute;
-right: 10px;
-top: 31px;
+	position: absolute;
+	right: 10px;
+	top: 31px;
 }
 
 .project .options a.log, #save_new_project {
-background-color: #ef5f92;
+	background-color: #ef5f92;
 }
 .project .options a.log, #save_new_project {
-color: #fff;
+	color: #fff;
 }
 
 #deleteExisting{
-  float:right;
+  float: right;
 }
-
-
 
 #show_accounts_btn{
   display: block;
@@ -413,9 +394,10 @@ color: #fff;
   -ms-transition: all .5s;
   transition: all .5s;
 }
+
 #show_accounts_btn:hover {
-background: rgba(255,255,255,1);
-color: #444;
+	background: rgba(255,255,255,1);
+	color: #444;
 }
 
 #show_accounts_btn i{
@@ -423,7 +405,6 @@ color: #444;
   position: relative;
   margin: 5px 0 0 0;
 }
-
 
 #toolbar #search_wrapper {
   position: absolute;
@@ -462,6 +443,5 @@ color: #444;
 }
 
 #search :focus #search_wrapper .icon-search{
-
   color: #fff;
 }
