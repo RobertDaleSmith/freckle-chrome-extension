@@ -18,9 +18,9 @@ html {
   display: block;
   position: relative;
   width: 450px;
-  height:458px;
+  height: 458px;
   max-width: 450px;
-  max-height:458px;
+  max-height: 458px;
 }
 
 body {
@@ -28,15 +28,15 @@ body {
   position: relative;
   margin: 0px !important;
   width: 100%;
-  height:100%;
-  font-family: OpenSans,Arial,sans-serif;
+  height: 100%;
+  font-family: OpenSans, Arial, sans-serif;
 }
 
 * {
-	text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
 }
 
-#error {
+#accounts-frame {
   display: block;
   position: absolute;
   top:0px; left:0px;
@@ -45,62 +45,42 @@ body {
   overflow-x: hidden;
 }
 
-#container #error {
+#body-wrapper #accounts-frame {
   display: none;
 }
 
-#container.error #error {
+#body-wrapper.show-accounts #accounts-frame {
   display: block;
 }
  
-#container.error #timer {
+#body-wrapper.show-accounts #timer-frame {
   display: none;
 }
 
-#timer{
+#timer-frame {
   display: block;
   position: absolute;
-  top:0px; left:0px;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
+  border: none;
 }
 
-#curtain {
+#overlay-mask {
+  display: none;
   position: fixed;
-  background: rgba(0,0,0,.7);
-  background: rgba(255,255,255,.6);
+  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 100000;
   left: 0;
   right: 0;
   top: 32px;
   bottom: 0;
-  z-index: 100000;
+  opacity: 0;
 }
 
-#new_project_name {
-	font-size: 14px;
-	font-family: inherit;
-	color: #666;
-	border: none;
-	background: #fff;
-	padding: 7px;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-#new_project_name:focus{
-  outline: 0;
-}
-
-#create_project_title{
-  display: inline-block;
-}
-
-#projects {
+#accounts {
   display: block;
   position: absolute;
   top: 29px;
@@ -109,7 +89,7 @@ body {
   padding-bottom: 50px;
 }
 
-.project {
+.account {
   display: block;
   background: #f5f5f5;
   font-size: 17px;
@@ -122,8 +102,9 @@ body {
   width: calc(100% - 20px);
 }
 
-.project h2{
-  width:calc(100% - 50px);
+.account h2 {
+  width: calc(100% - 50px);
+  height: 100%;
 }
 
 ul {
@@ -136,19 +117,19 @@ ol, ul {
   list-style: none;
 }
 
-.project .options {
+.account .options {
   float: right;
   padding: 5px 10px 0 0;
   z-index: 1;
   position: relative;
 }
 
-.project.selected {
+.account.selected {
   color: #000;
   box-shadow: 0 0 0 2px #ccc;
 }
 
-.project .project-name {
+.account .account-name {
   overflow-x: hidden;
   height: 23px;
   display: block;
@@ -160,7 +141,7 @@ ol, ul {
   text-overflow: ellipsis;
 }
 
-.project .color-box {
+.account .color-box {
   display: inline-block;
   position: relative;
   top: -2px;
@@ -168,17 +149,17 @@ ol, ul {
   width: 8px;
   height: 8px;
   border-radius: 9px;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  -ms-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+          transition: all 0.3s;
 }
 
 .play:before {
-  margin-top:5px;
+  margin-top: 5px;
 }
 
-.project .options a, #save_new_project {
+.account .options a, #edit-menu-save-button {
   border-radius: 10px;
   display: block;
   height: 28px;
@@ -194,18 +175,18 @@ ol, ul {
   text-decoration: none;
   font-size: 16px;
   line-height: 28px;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  -ms-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+          transition: all 0.3s;
 }
 
-#save_new_project i {
+#edit-menu-save-button i {
   display: block;
   margin-top: 6px;
 }
 
-.project:hover {
+.account:hover {
   color: #000;
   box-shadow: 0 0 0 2px #ccc;
 }
@@ -221,25 +202,25 @@ ol, ul {
   text-align: center;
   line-height: 15px;
   background: #e5467f;
-  background: -webkit-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#be0344),color-stop(0.0088,#be0344),color-stop(0.00881,rgba(229,70,127,0.91)),color-stop(1,#e5467f));
-  background: -moz-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background: -ms-linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f);
-  background: linear-gradient(0deg,#be0344,#be0344 .88%,rgba(229,70,127,0.91) .881%,#e5467f)
+  background: -webkit-linear-gradient(0deg, #be0344, #be0344 0.88%, rgba(229, 70, 127, 0.91) 0.881%, #e5467f);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #be0344), color-stop(0.0088, #be0344), color-stop(0.00881, rgba(229, 70, 127, 0.91)), color-stop(1, #e5467f));
+  background: -moz-linear-gradient(0deg, #be0344, #be0344 0.88%, rgba(229, 70, 127, 0.91) 0.881%, #e5467f);
+  background: -ms-linear-gradient(0deg, #be0344, #be0344 0.88%, rgba(229, 70, 127, 0.91) 0.881%, #e5467f);
+  background: linear-gradient(0deg, #be0344, #be0344 0.88%,rgba(229, 70, 127, 0.91) 0.881%, #e5467f)
 }
 
 #noko_menu_bar a {
   text-decoration: none;
 }
 
-#noko_timer {
+#noko-logo {
   position: absolute;
   display: block;
   left: 8px;
   top: 1px
 }
 
-#noko_timer img {
+#noko-logo img {
   width:98px;
   height:29px
 }
@@ -251,7 +232,7 @@ ol, ul {
   border-radius: 50px
 }
 
-#add_new_account {
+#add-button {
   display: block;
   position: absolute;
   width: 63px;
@@ -265,22 +246,19 @@ ol, ul {
   text-decoration: none;
   text-align: center;
   font-size: 12px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-#add_new_account:hover {
+#add-button:hover {
+  color: #d7356f;
+  background: #fff;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
   transition: all .2s;
 }
 
-#add_new_account:hover {
-  color: #d7356f;
-  background: #fff;
-}
-
-#create_project {
+#edit-menu {
   height: 72px;
   position: fixed;
   top: -72px;
@@ -288,13 +266,13 @@ ol, ul {
   right: 0;
   z-index: 100001;
   background: #76d9eb;
-  background: -webkit-linear-gradient(#76d9eb,#37bbd2);
-  background: -moz-linear-gradient(#76d9eb,#37bbd2);
-  background: -ms-linear-gradient(#76d9eb,#37bbd2);
-  background: linear-gradient(#76d9eb,#37bbd2);
+  background: -webkit-linear-gradient(#76d9eb, #37bbd2);
+  background: -moz-linear-gradient(#76d9eb, #37bbd2);
+  background: -ms-linear-gradient(#76d9eb, #37bbd2);
+  background: linear-gradient(#76d9eb, #37bbd2);
 }
 
-#create_project label {
+#edit-menu label {
   font-size: 14px;
   color: #fff;
   position: absolute;
@@ -303,12 +281,52 @@ ol, ul {
   width:calc(100% - 72px);
 }
 
-#create_project span {
-	color: #c4ebf4;
+#edit-menu span {
+  color: #c4ebf4;
 }
 
-#create_project label a {
-	color: #fff;
+#edit-menu label a {
+  color: #fff;
+}
+
+#edit-menu-label {
+  display: inline-block;
+}
+
+#edit-menu-discard-option {
+  display: none;
+  float: right;
+}
+
+#edit-menu-input-wrapper {
+  position: absolute;
+  display: block;
+  top: 28px;
+  left: 10px;
+  right: 60px;
+}
+
+#edit-menu-input {
+  position: relative;
+
+  font-size: 14px;
+  font-family: inherit;
+  color: #666;
+  border: none;
+  background: #fff;
+  padding: 7px;
+
+  width: 100%;
+  height: 100%;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#edit-menu-input:focus {
+  outline: 0;
 }
 
 #toolbar {
@@ -323,56 +341,29 @@ ol, ul {
   box-sizing: border-box;
   padding: 6px 8px 8px;
   z-index: 999;
-  background: rgba(248,248,248,0.925);
-  background: -webkit-linear-gradient(#b2b2b2,#b2b2b2 1%,rgba(248,248,248,0.925) 1.01%,#f8f8f8);
-  background: -moz-linear-gradient(#b2b2b2,#b2b2b2 1%,rgba(248,248,248,0.925) 1.01%,#f8f8f8);
-  background: -ms-linear-gradient(#b2b2b2,#b2b2b2 1%,rgba(248,248,248,0.925) 1.01%,#f8f8f8);
-  background: linear-gradient(#b2b2b2,#b2b2b2 1%,rgba(248,248,248,0.925) 1.01%,#f8f8f8);
+  background: rgba(248, 248, 248, 0.925);
+  background: -webkit-linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
+  background: -moz-linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
+  background: -ms-linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
+  background: linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
 }
 
-#new_project_name_wrapper {
-	position: absolute;
-	display: block;
-	top: 28px;
-	left: 10px;
-	right: 60px;
+#edit-menu-save-button {
+  position: absolute;
+  right: 10px;
+  top: 31px;
 }
 
-#new_project_name {
-	font-size: 14px;
-	font-family: inherit;
-	color: #666;
-	border: none;
-	background: #fff;
-	padding: 7px;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+.account .options a.log, #edit-menu-save-button {
+  background-color: #ef5f92;
 }
 
-#save_new_project {
-	position: absolute;
-	right: 10px;
-	top: 31px;
+.account .options a.log, #edit-menu-save-button {
+  color: #fff;
 }
 
-.project .options a.log, #save_new_project {
-	background-color: #ef5f92;
-}
-.project .options a.log, #save_new_project {
-	color: #fff;
-}
-
-#deleteExisting{
-  float: right;
-}
-
-#show_accounts_btn{
-  display: block;
+#back-button {
+  display: none;
   position: fixed;
   bottom:8px;
   left: 215px;
@@ -390,17 +381,17 @@ ol, ul {
   color: #888;
   background: rgba(240,240,240,0.9);
   -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  -ms-transition: all .5s;
-  transition: all .5s;
+     -moz-transition: all .5s;
+      -ms-transition: all .5s;
+          transition: all .5s;
 }
 
-#show_accounts_btn:hover {
-	background: rgba(255,255,255,1);
-	color: #444;
+#back-button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #444;
 }
 
-#show_accounts_btn i{
+#back-button i {
   display: block;
   position: relative;
   margin: 5px 0 0 0;
@@ -412,18 +403,19 @@ ol, ul {
 }
 
 #toolbar input {
-  font: 13px/17px OpenSans,Arial,sans-serif;
+  font: 13px/17px OpenSans, Arial, sans-serif;
   padding: 2px 20px 2px 10px;
   margin: 1px 0 0 0;
   color: #000;
   border: 1px solid #ddd;
   border-radius: 50px;
   -webkit-appearance: none;
-  -webkit-transition: all .1s;
-  -moz-transition: all .1s;
-  -ms-transition: all .1s;
-  transition: all .1s;
+  -webkit-transition: all 0.1s;
+     -moz-transition: all 0.1s;
+      -ms-transition: all 0.1s;
+          transition: all 0.1s;
 }
+
 #toolbar input:focus {
   background: #888;
   border: 1px solid #888;
@@ -436,12 +428,12 @@ ol, ul {
   right: 8px;
   top: 6px;
   font-size: 12px;
-  -webkit-transition: all .1s;
-  -moz-transition: all .1s;
-  -ms-transition: all .1s;
-  transition: all .1s;
+  -webkit-transition: all 0.1s;
+     -moz-transition: all 0.1s;
+      -ms-transition: all 0.1s;
+          transition: all 0.1s;
 }
 
-#search :focus #search_wrapper .icon-search{
+#search :focus #search_wrapper .icon-search {
   color: #fff;
 }
