@@ -29,11 +29,21 @@ body {
   margin: 0px !important;
   width: 100%;
   height: 100%;
-  font-family: OpenSans, Arial, sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,OpenSans,Helvetica,Arial,sans-serif;
 }
 
 * {
   text-rendering: optimizeLegibility;
+}
+
+svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: center;
+  position: relative;
+  top: -2px;
+  pointer-events: none;
+  fill: inherit;
 }
 
 #accounts-frame {
@@ -235,13 +245,14 @@ ol, ul {
 #add-button {
   display: block;
   position: absolute;
-  width: 63px;
+  width: auto;
   height: 21px;
   right: 5px;
   top: 5px;
   line-height: 20px;
-  padding: 0 4px 0 4px;
+  padding: 0 8px 0 4px;
   color: #fff;
+  fill: #fff;
   border-radius: 7px;
   text-decoration: none;
   text-align: center;
@@ -251,11 +262,18 @@ ol, ul {
 
 #add-button:hover {
   color: #d7356f;
+  fill: #f7356f;
   background: #fff;
   -webkit-transition: all .2s;
   -moz-transition: all .2s;
   -ms-transition: all .2s;
   transition: all .2s;
+}
+
+#add-button svg {
+  fill: inherit;
+  top: 0;
+  vertical-align: middle;
 }
 
 #edit-menu {
@@ -329,6 +347,20 @@ ol, ul {
   outline: 0;
 }
 
+#edit-menu-save-button {
+  position: absolute;
+  right: 10px;
+  top: 31px;
+}
+
+.account .options a.log, #edit-menu-save-button {
+  background-color: #ef5f92;
+}
+
+.account .options a.log, #edit-menu-save-button {
+  color: #fff;
+}
+
 #toolbar {
   position: fixed;
   bottom: 0;
@@ -348,17 +380,121 @@ ol, ul {
   background: linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
 }
 
-#edit-menu-save-button {
+#toolbar #search_wrapper {
   position: absolute;
-  right: 10px;
-  top: 31px;
+  color: #777;
 }
 
-.account .options a.log, #edit-menu-save-button {
-  background-color: #ef5f92;
+#toolbar input {
+  font: 13px/17px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,OpenSans,Helvetica,Arial,sans-serif;
+  padding: 2px 20px 2px 10px;
+  margin: 2px 0 0 0;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  -webkit-appearance: none;
+  -webkit-transition: all 0.1s;
+     -moz-transition: all 0.1s;
+      -ms-transition: all 0.1s;
+          transition: all 0.1s;
 }
 
-.account .options a.log, #edit-menu-save-button {
+#toolbar input:focus {
+  background: #888;
+  border: 1px solid #888;
+  color: #fff;
+  outline: 0;
+}
+
+#toolbar input::-webkit-input-placeholder{
+  color: rgba(0,0,0,0.22);
+}
+
+#toolbar input:focus::-webkit-input-placeholder{
+  color: #ddd;
+}
+
+#toolbar input:-ms-input-placeholder{
+  color: rgba(0,0,0,0.22);
+}
+
+#toolbar input:focus::-ms-input-placeholder{
+  color: #ddd;
+}
+
+#toolbar input::-moz-placeholder{
+  color: rgba(0,0,0,0.38);
+}
+
+#toolbar input:focus::-moz-placeholder{
+  color: #ddd;
+}
+
+#toolbar input:-moz-placeholder{
+  color: rgba(0,0,0,0.38);
+}
+
+#toolbar input:focus:-moz-placeholder{
+  color: #ddd;
+}
+
+#toolbar>a {
+  display: block;
+  float: right;
+  text-align: center;
+  height: 26px;
+  width: 26px;
+  font-size: 16px;
+  line-height: 26px;
+  z-index: 100000;
+  text-decoration: none;
+  border-radius: 26px;
+  margin: 0 0 0 8px;
+  color: #444;
+  fill: #444;
+  background: rgba(240,240,240,0.9);
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  transition: all .5s;
+}
+#toolbar>a svg {
+  fill: inherit;
+  top: 2px;
+}
+
+#toolbar #search_wrapper svg {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-size: 12px;
+  fill: #777;
+  -webkit-transition: all .1s;
+  -moz-transition: all .1s;
+  -ms-transition: all .1s;
+  transition: all .1s;
+}
+
+#toolbar #search_wrapper input:focus + svg {
+  fill: #fff;
+}
+
+#toolbar #search_wrapper i.icon-search {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-size: 12px;
+  -webkit-transition: all 0.1s;
+     -moz-transition: all 0.1s;
+      -ms-transition: all 0.1s;
+          transition: all 0.1s;
+}
+
+#search-input {
+  width: 178px;
+}
+
+#search-input:focus #search_wrapper .icon-search {
   color: #fff;
 }
 
@@ -393,45 +529,4 @@ ol, ul {
   display: block;
   position: relative;
   margin: 5px 0 0 0;
-}
-
-#toolbar #search_wrapper {
-  position: absolute;
-  color: #777;
-}
-
-#toolbar input {
-  font: 13px/17px OpenSans, Arial, sans-serif;
-  padding: 2px 20px 2px 10px;
-  margin: 1px 0 0 0;
-  color: #000;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  -webkit-appearance: none;
-  -webkit-transition: all 0.1s;
-     -moz-transition: all 0.1s;
-      -ms-transition: all 0.1s;
-          transition: all 0.1s;
-}
-
-#toolbar input:focus {
-  background: #888;
-  border: 1px solid #888;
-  color: #fff;
-  outline: 0;
-}
-
-#toolbar #search_wrapper i.icon-search {
-  position: absolute;
-  right: 8px;
-  top: 6px;
-  font-size: 12px;
-  -webkit-transition: all 0.1s;
-     -moz-transition: all 0.1s;
-      -ms-transition: all 0.1s;
-          transition: all 0.1s;
-}
-
-#search :focus #search_wrapper .icon-search {
-  color: #fff;
 }

@@ -14,6 +14,7 @@ const editInput = document.querySelector('#edit-menu-input');
 const editLabel = document.querySelector('#edit-menu-label');
 const overlayMask = document.querySelector('#overlay-mask');
 const saveButton = document.querySelector('#edit-menu-save-button');
+const searchInput = document.querySelector('#search-input');
 const timerFrame = document.querySelector('#timer-frame');
 
 const colors = ['#ef9655','#55c9ef','#ef5555','#f1f353','#bce162','#13a480','#ef63a2'];
@@ -28,14 +29,7 @@ function init() {
   if (!accountName) onShowAccounts();
   else onOpenAccount(accountName);
 
-  if (localStorage['account-list']) {
-    accounts = JSON.parse(localStorage['account-list']);
-    for (let i=0; i < accounts.length; i++) {
-      renderAccount(accounts[i]);
-    }
-  }
-
-  if (accounts.length < 1) onEditAccount();
+  renderAccounts();
 
   addButton.onclick = onEditAccount;
   backButton.onclick = onShowAccounts;
@@ -44,6 +38,7 @@ function init() {
   editInput.onkeypress = onEditInput;
   overlayMask.onclick = onCancelEdit;
   saveButton.onclick = onSaveAccount;
+  searchInput.onkeyup = onSearchInput;
 }
 
 window.onload = init();
@@ -138,6 +133,14 @@ function onSaveAccount() {
   }
 }
 
+function onSearchInput(event) {
+  const { value } = event.target;
+
+  console.log(value);
+
+  renderAccounts({ filter: value.toLowerCase() });
+}
+
 function onShowAccounts() {
   bodyWrapper.className = "show-accounts";
   timerFrame.setAttribute("src", "");
@@ -198,6 +201,24 @@ function renderAccount(options = {}) {
   accountList.appendChild(listItem);
 }
 
+function renderAccounts(options = {}) {
+  const { filter } = options;
+
+  accountList.innerHTML = "";
+
+  if (localStorage['account-list']) {
+    accounts = JSON.parse(localStorage['account-list']) || [];
+    accounts.forEach((account) => {
+      const name = account.name.toLowerCase();
+      const match = name.indexOf(filter) > -1;
+      if (filter && !match) return;
+      renderAccount(account);
+    });
+  }
+
+  if (accounts.length < 1) onEditAccount();
+}
+
 function strobeError() {
   let hexVal = 255;
   let down = true;
@@ -249,7 +270,7 @@ function toggleEditAccount(show = true) {
   const interval = setInterval(function(){
     editBlock.style.top = `${val}px`;
     val = val + delta;
-    if (val >= 34 || val <= -72) { 
+    if (val >= 34 || val <= -74) { 
       if (val <= -70) editInput.value = "";
       if (val >=  34) editInput.focus();
       clearInterval(interval); 
