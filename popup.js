@@ -1,7 +1,9 @@
+'use strict';
+
 let accounts = [];
-let editingId = null;
+let editingId = false;
 let isEditing = false;
-let sortByName = false;
+let sortBySet = false;
 
 const accountList = document.querySelector('#account-list');
 const addButton = document.querySelector('#add-button');
@@ -28,14 +30,13 @@ const randomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + m
 const randomColor = () => colors[randomInt(0, 6)];
 
 function init() {
-  const accountName = localStorage['account-name'];
+  fixLegacyStorage();
 
+  const accountName = localStorage['account-name'];
   if (!accountName) onShowAccounts();
   else onOpenAccount(accountName);
 
   onSetSortBy();
-
-  renderAccounts();
 
   addButton.onclick = onEditAccount;
   backButton.onclick = onShowAccounts;
@@ -50,6 +51,17 @@ function init() {
 }
 
 window.onload = init();
+
+function fixLegacyStorage() {
+  if (localStorage['organisation-list'] && !localStorage['account-list']) {
+    localStorage['account-list'] = localStorage['organisation-list'];
+  }
+  if (localStorage['organisation-name'] && !localStorage['account-name']) {
+    localStorage['account-name'] = localStorage['organisation-name'];
+  }
+  delete localStorage['organisation-list'];
+  delete localStorage['organisation-name'];
+}
 
 function onAddAccount(options = {}) {
   const { name } = options;
@@ -66,7 +78,7 @@ function onAddAccount(options = {}) {
 
 function onCancelEdit() {
   if (isEditing) {
-    editingId = null;
+    editingId = false;
     isEditing = false;
     toggleEdit(false);
     toggleOverlay(false);
@@ -78,7 +90,7 @@ function onDiscardAccount() {
   const id = editingId;
   console.log(id);
 
-  document.querySelector(`#${id}`).remove();
+  accountList.querySelector(`#${id}`).remove();
 
   for (let i = 0; i < accounts.length; i++) {
     if (nameToId(accounts[i].name) === id) {
@@ -130,7 +142,7 @@ function onSaveAccount() {
   const name = value.replace(match, "");
   const newId = nameToId(name);
 
-  if (name && (!document.querySelector(`#${newId}`) || editingId === newId)) {
+  if (name && (!accountList.querySelector(`#${newId}`) || editingId === newId)) {
     if(!editingId){
       onAddAccount({ name });
       onCancelEdit();
@@ -150,9 +162,9 @@ function onSearchInput(event) {
 function onSetSortBy(event = {}) {
   let { target } = event;
 
-  sortByName = localStorage['sort-by-name'] === "true";
+  sortBySet = localStorage['sort-by-name'] === "true";
 
-  if (!target && sortByName) target = sortNameButton;
+  if (!target && sortBySet) target = sortNameButton;
 
   if (!target) return;
 
@@ -160,9 +172,9 @@ function onSetSortBy(event = {}) {
 
   const sibling = previousElementSibling || nextElementSibling;
 
-  sortByName = (target.id.indexOf('name') > -1);
+  sortBySet = (target.id.indexOf('name') > -1);
 
-  localStorage['sort-by-name'] = sortByName;
+  localStorage['sort-by-name'] = sortBySet;
 
   target.className = "pill active";
   sibling.className = "pill";
@@ -182,7 +194,7 @@ function onUpdateAccount(options = {}) {
   const { id, name } = options;
   if (!id || !name) return;
 
-  const liElement = document.querySelector(`#${id}`);
+  const liElement = accountList.querySelector(`#${id}`);
   liElement.querySelector('.account-title').textContent = name;
   liElement.id = nameToId(name);
   liElement.title = name;
@@ -241,7 +253,7 @@ function renderAccounts() {
     accounts = JSON.parse(localStorage['account-list']) || [];
 
     let sortedAccounts = accounts;
-    if (sortByName) {
+    if (sortBySet) {
       sortedAccounts = accounts.sort((a, b) => (a.name < b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
     }
 
