@@ -361,7 +361,7 @@ ol, ul {
   color: #fff;
 }
 
-#toolbar {
+.toolbar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -380,12 +380,12 @@ ol, ul {
   background: linear-gradient(#b2b2b2, #b2b2b2 1%, rgba(248,248,248,0.925) 1.01%, #f8f8f8);
 }
 
-#toolbar #search_wrapper {
+.toolbar #search_wrapper {
   position: absolute;
   color: #777;
 }
 
-#toolbar input {
+.toolbar input {
   font: 13px/17px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,OpenSans,Helvetica,Arial,sans-serif;
   padding: 2px 20px 2px 10px;
   margin: 2px 0 0 0;
@@ -399,46 +399,46 @@ ol, ul {
           transition: all 0.1s;
 }
 
-#toolbar input:focus {
+.toolbar input:focus {
   background: #888;
   border: 1px solid #888;
   color: #fff;
   outline: 0;
 }
 
-#toolbar input::-webkit-input-placeholder{
+.toolbar input::-webkit-input-placeholder{
   color: rgba(0,0,0,0.22);
 }
 
-#toolbar input:focus::-webkit-input-placeholder{
+.toolbar input:focus::-webkit-input-placeholder{
   color: #ddd;
 }
 
-#toolbar input:-ms-input-placeholder{
+.toolbar input:-ms-input-placeholder{
   color: rgba(0,0,0,0.22);
 }
 
-#toolbar input:focus::-ms-input-placeholder{
+.toolbar input:focus::-ms-input-placeholder{
   color: #ddd;
 }
 
-#toolbar input::-moz-placeholder{
+.toolbar input::-moz-placeholder{
   color: rgba(0,0,0,0.38);
 }
 
-#toolbar input:focus::-moz-placeholder{
+.toolbar input:focus::-moz-placeholder{
   color: #ddd;
 }
 
-#toolbar input:-moz-placeholder{
+.toolbar input:-moz-placeholder{
   color: rgba(0,0,0,0.38);
 }
 
-#toolbar input:focus:-moz-placeholder{
+.toolbar input:focus:-moz-placeholder{
   color: #ddd;
 }
 
-#toolbar>a {
+.toolbar>a {
   display: block;
   float: right;
   text-align: center;
@@ -458,12 +458,12 @@ ol, ul {
   -ms-transition: all .5s;
   transition: all .5s;
 }
-#toolbar>a svg {
+.toolbar>a svg {
   fill: inherit;
   top: 2px;
 }
 
-#toolbar #search_wrapper svg {
+.toolbar #search_wrapper svg {
   position: absolute;
   right: 8px;
   top: 6px;
@@ -475,11 +475,11 @@ ol, ul {
   transition: all .1s;
 }
 
-#toolbar #search_wrapper input:focus + svg {
+.toolbar #search_wrapper input:focus + svg {
   fill: #fff;
 }
 
-#toolbar #search_wrapper i.icon-search {
+.toolbar #search_wrapper i.icon-search {
   position: absolute;
   right: 8px;
   top: 6px;
@@ -488,6 +488,10 @@ ol, ul {
      -moz-transition: all 0.1s;
       -ms-transition: all 0.1s;
           transition: all 0.1s;
+}
+
+#toolbar-underlay {
+  z-index: initial;
 }
 
 #search-input {

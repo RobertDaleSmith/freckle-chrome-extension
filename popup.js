@@ -5,6 +5,7 @@ let isEditing = null;
 const accountList = document.querySelector('#account-list');
 const addButton = document.querySelector('#add-button');
 const backButton = document.querySelector('#back-button');
+const barUnderlay = document.querySelector('#toolbar-underlay');
 const bodyWrapper = document.querySelector('#body-wrapper');
 const cancelButton = document.querySelector('#edit-menu-cancel-button');
 const discardOption = document.querySelector('#edit-menu-discard-option');
@@ -111,6 +112,7 @@ function onOpenAccount(name) {
   bodyWrapper.className = "";
   timerFrame.setAttribute("src", `https://${name}.nokotime.com/timer`);
   backButton.style.display = "block";
+  barUnderlay.style.display = "block";
   localStorage['account-name'] = name;
 }
 
@@ -145,6 +147,7 @@ function onShowAccounts() {
   bodyWrapper.className = "show-accounts";
   timerFrame.setAttribute("src", "");
   backButton.style.display = "none";
+  barUnderlay.style.display = "none";
   localStorage['account-name'] = "";
 }
 
