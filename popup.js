@@ -240,11 +240,12 @@ function renderAccounts() {
   if (localStorage['account-list']) {
     accounts = JSON.parse(localStorage['account-list']) || [];
 
+    let sortedAccounts = accounts;
     if (sortByName) {
-      accounts = accounts.sort((a, b) => (a.name < b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
+      sortedAccounts = accounts.sort((a, b) => (a.name < b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
     }
 
-    accounts.forEach((account) => {
+    sortedAccounts.forEach((account) => {
       const name = account.name.toLowerCase();
       const match = name.indexOf(filter) > -1;
       if (filter && !match) return;
