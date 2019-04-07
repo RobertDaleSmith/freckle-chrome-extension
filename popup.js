@@ -68,8 +68,8 @@ function onCancelEdit() {
   if (isEditing) {
     editingId = null;
     isEditing = false;
-    toggleEditAccount(false);
-    toggleOverlayMask(false);
+    toggleEdit(false);
+    toggleOverlay(false);
     discardOption.style.display = "none";
   }
 }
@@ -106,8 +106,8 @@ function onEditAccount(options = {}) {
       editInput.value = name;
     }
     isEditing = true;
-    toggleEditAccount();
-    toggleOverlayMask();
+    toggleEdit();
+    toggleOverlay();
   }
 }
 
@@ -139,7 +139,7 @@ function onSaveAccount() {
       onCancelEdit();
     }
   } else {
-    strobeError();
+    throbError();
   }
 }
 
@@ -256,7 +256,7 @@ function renderAccounts() {
   if (accounts.length < 1) onEditAccount();
 }
 
-function strobeError() {
+function throbError() {
   let hexVal = 255;
   let down = true;
   let delta = 5;
@@ -278,7 +278,7 @@ function strobeError() {
   }, 5);
 }
 
-function toggleOverlayMask(show = true) {
+function toggleOverlay(show = true) {
   let val = 0;
   let delta = 0.1;
 
@@ -297,7 +297,7 @@ function toggleOverlayMask(show = true) {
   }, 5);
 }
 
-function toggleEditAccount(show = true) {
+function toggleEdit(show = true) {
   let val = -72;
   let delta = 2;
   if (!show) {
