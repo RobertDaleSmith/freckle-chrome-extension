@@ -364,30 +364,28 @@ ol, ul {
 
 #back-button {
   display: none;
-  position: fixed;
-  bottom:8px;
-  left: 215px;
-  z-index: 1000010;
-  text-align: center;
-
-  height: 26px;
-  width: 26px;
-  font-size: 16px;
-  line-height: 26px;
-  z-index: 100000;
+  position: absolute;
+  bottom: 8px;
+  left: 196px;
+  border: 1px solid rgb(143, 143, 143);
+  border-radius: 5px;
+  background: rgba(248, 248, 248, 0.6);
   text-decoration: none;
-  border-radius: 26px;
-  margin: 0 0 0 8px;
-  color: #888;
-  background: rgba(240,240,240,0.9);
-  -webkit-transition: all .5s;
-     -moz-transition: all .5s;
-      -ms-transition: all .5s;
-          transition: all .5s;
+  color: rgb(68, 68, 68);
+  font-size: 11px;
+  height: 21px;
+  line-height: 21px;
+  padding: 0px 9px;
+  margin: 0px 4px;
 }
 
 #back-button:hover {
-  background: rgba(255, 255, 255, 1);
+  background: #e0e0e0!important;
+  color: #444;
+}
+
+#back-button:active {
+  background: #d0d0d0!important;
   color: #444;
 }
 
