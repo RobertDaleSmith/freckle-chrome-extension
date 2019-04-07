@@ -393,10 +393,10 @@ ol, ul {
   border: 1px solid #ddd;
   border-radius: 50px;
   -webkit-appearance: none;
-  -webkit-transition: all 0.1s;
-     -moz-transition: all 0.1s;
-      -ms-transition: all 0.1s;
-          transition: all 0.1s;
+  -webkit-transition: background 0.1s, color 0.1s;
+     -moz-transition: background 0.1s, color 0.1s;
+      -ms-transition: background 0.1s, color 0.1s;
+          transition: background 0.1s, color 0.1s;
 }
 
 .toolbar input:focus {
@@ -533,4 +533,94 @@ ol, ul {
   display: block;
   position: relative;
   margin: 5px 0 0 0;
+}
+
+.pill {
+  font-size: 11px;
+  line-height: 18px;
+  padding: 2px 9px;
+  height: 23px;
+  border-radius: 7px;
+  color: #444;
+  font-weight: normal;
+  text-decoration: none;
+  background-color: #f0f0f0;
+  border: none;
+  border-bottom: 1px solid #d0d0d0;
+  white-space: nowrap;
+  margin-left: 4px;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  fill: rgba(0,0,0,0.75);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.segmented {
+  display: block;
+  float: right;
+  margin-top: 3px;
+  font-size: 0;
+}
+.segmented .pill {
+  border-radius: 0;
+  display: inline-block;
+  border-top: 1px solid #8f8f8f;
+  border-bottom: 1px solid #8f8f8f;
+  border-left: 1px solid #8f8f8f;
+  border-right: none;
+  margin-left: 0;
+  background: transparent;
+  height: 23px;
+}
+.segmented .pill:hover {
+  background: inherit;
+}
+.segmented .pill.important {
+  font-weight: bold;
+}
+.segmented .pill.active {
+  border-right: 1px solid #8f8f8f;
+  border-bottom:1px solid #8f8f8f;
+  background:#8f8f8f;
+  color:#fff;
+}
+.segmented .pill:first-child {
+  margin-left: 4px;
+}
+.segmented .pill:last-child {
+  border-right: 1px solid #8f8f8f;
+  margin-right: 2px;
+}
+
+#toolbar .segmented a.pill:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#toolbar .segmented a.pill:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+#toolbar .segmented a.pill:hover {
+  background: #e0e0e0 !important;
+  color: #444;
+}
+#toolbar .segmented a.pill:active {
+  background: #d0d0d0 !important;
+  color: #444;
+}
+#toolbar .segmented a.pill.active:hover {
+  background: #8f8f8f !important;
+  color: #fff;
+}
+#toolbar .segmented a.pill.active:active {
+  background: #8f8f8f !important;
+  color: #fff;
+}
+#toolbar a:hover {
+  background: rgba(255,255,255,1);
+  color: #444;
+  fill: #444;
 }

@@ -1,6 +1,7 @@
 let accounts = [];
 let editingId = null;
-let isEditing = null;
+let isEditing = false;
+let sortByName = false;
 
 const accountList = document.querySelector('#account-list');
 const addButton = document.querySelector('#add-button');
@@ -16,6 +17,8 @@ const editLabel = document.querySelector('#edit-menu-label');
 const overlayMask = document.querySelector('#overlay-mask');
 const saveButton = document.querySelector('#edit-menu-save-button');
 const searchInput = document.querySelector('#search-input');
+const sortNameButton = document.querySelector('#sort-name-button');
+const sortRecentButton = document.querySelector('#sort-recent-button');
 const timerFrame = document.querySelector('#timer-frame');
 
 const colors = ['#ef9655','#55c9ef','#ef5555','#f1f353','#bce162','#13a480','#ef63a2'];
@@ -30,6 +33,8 @@ function init() {
   if (!accountName) onShowAccounts();
   else onOpenAccount(accountName);
 
+  onSetSortBy();
+
   renderAccounts();
 
   addButton.onclick = onEditAccount;
@@ -40,6 +45,8 @@ function init() {
   overlayMask.onclick = onCancelEdit;
   saveButton.onclick = onSaveAccount;
   searchInput.onkeyup = onSearchInput;
+  sortNameButton.onclick = onSetSortBy;
+  sortRecentButton.onclick = onSetSortBy;
 }
 
 window.onload = init();
@@ -49,11 +56,12 @@ function onAddAccount(options = {}) {
   if (!name) return;
 
   const newAccount = { name, color: randomColor() };
-  renderAccount(newAccount);
-  accounts.push(newAccount);
+  accounts.unshift(newAccount);
 
   //Add to local storage.
   localStorage['account-list'] = JSON.stringify(accounts);
+
+  renderAccounts();
 }
 
 function onCancelEdit() {
@@ -136,11 +144,30 @@ function onSaveAccount() {
 }
 
 function onSearchInput(event) {
-  const { value } = event.target;
+  renderAccounts();
+}
 
-  console.log(value);
+function onSetSortBy(event = {}) {
+  let { target } = event;
 
-  renderAccounts({ filter: value.toLowerCase() });
+  sortByName = localStorage['sort-by-name'] === "true";
+
+  if (!target && sortByName) target = sortNameButton;
+
+  if (!target) return;
+
+  const { previousElementSibling, nextElementSibling } = target;
+
+  const sibling = previousElementSibling || nextElementSibling;
+
+  sortByName = (target.id.indexOf('name') > -1);
+
+  localStorage['sort-by-name'] = sortByName;
+
+  target.className = "pill active";
+  sibling.className = "pill";
+
+  renderAccounts();
 }
 
 function onShowAccounts() {
@@ -158,6 +185,7 @@ function onUpdateAccount(options = {}) {
   const liElement = document.querySelector(`#${id}`);
   liElement.querySelector('.account-title').textContent = name;
   liElement.id = nameToId(name);
+  liElement.title = name;
 
   for (let i = 0; i < accounts.length; i++) {
     if (nameToId(accounts[i].name) === id) {
@@ -175,22 +203,21 @@ function renderAccount(options = {}) {
   if (!name) return;
   if (!color) color = randomColor();
 
-  const id = nameToId(name);
-
   const listItem = document.createElement('li');
   listItem.className = "account";
-  listItem.id = id;
+  listItem.id = nameToId(name);
+  listItem.title = name;
 
   const optionsBlock = document.createElement('div');
   optionsBlock.className = "options";
 
   const editButton = document.createElement('a');
-  editButton.onclick = (e) => onEditAccount({ name });
+  editButton.onclick = (e) => onEditAccount({ name: listItem.title });
   editButton.className = "play icon-cog2";
   editButton.setAttribute("href", "#");
   
   const titleBlock = document.createElement("h2");
-  titleBlock.onclick = (e) => onOpenAccount(id.replace("id_", ""));
+  titleBlock.onclick = (e) => onOpenAccount(listItem.id.replace("id_", ""));
   titleBlock.innerHTML = `
     <span class="account-name">
       <div class="color-box" style="background-color: ${color}"></div>
@@ -204,13 +231,19 @@ function renderAccount(options = {}) {
   accountList.appendChild(listItem);
 }
 
-function renderAccounts(options = {}) {
-  const { filter } = options;
+function renderAccounts() {
+  let filter = searchInput.value || "";
+  filter = filter.toLowerCase();
 
   accountList.innerHTML = "";
 
   if (localStorage['account-list']) {
     accounts = JSON.parse(localStorage['account-list']) || [];
+
+    if (sortByName) {
+      accounts = accounts.sort((a, b) => (a.name < b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
+    }
+
     accounts.forEach((account) => {
       const name = account.name.toLowerCase();
       const match = name.indexOf(filter) > -1;
