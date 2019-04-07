@@ -30,13 +30,12 @@ const randomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + m
 const randomColor = () => colors[randomInt(0, 6)];
 
 function init() {
-  fixLegacyStorage();
-
   const accountName = localStorage['account-name'];
+
+  initFrameHeader();
+  localStorageFix();
   if (!accountName) onShowAccounts();
   else onOpenAccount(accountName);
-
-  onSetSortBy();
 
   addButton.onclick = onEditAccount;
   backButton.onclick = onShowAccounts;
@@ -46,13 +45,21 @@ function init() {
   overlayMask.onclick = onCancelEdit;
   saveButton.onclick = onSaveAccount;
   searchInput.onkeyup = onSearchInput;
-  sortNameButton.onclick = onSetSortBy;
-  sortRecentButton.onclick = onSetSortBy;
+  sortNameButton.onclick = onSortAccounts;
+  sortRecentButton.onclick = onSortAccounts;
 }
 
 window.onload = init();
 
-function fixLegacyStorage() {
+function initFrameHeader() {
+  // add the header to allow content to be iframed
+  chrome.webRequest.onBeforeSendHeaders.addListener((details) => {
+    details.requestHeaders.push({ name: "X-Freckle-Flags", value: "allow-iframe" });
+    return { requestHeaders: details.requestHeaders };
+  }, { urls: ["<all_urls>"] }, ["blocking", "requestHeaders"]);
+}
+
+function localStorageFix() {
   if (localStorage['organisation-list'] && !localStorage['account-list']) {
     localStorage['account-list'] = localStorage['organisation-list'];
   }
@@ -124,8 +131,11 @@ function onEditAccount(options = {}) {
 }
 
 function onEditInput(event) {
-  if (event.keyCode === 13) onSaveAccount();
-  else if (event.keyCode === 27) onCancelEdit();
+  if (event.keyCode === 13) {
+    onSaveAccount();
+  } else if (event.keyCode === 27) {
+    onCancelEdit();
+  }
 }
 
 function onOpenAccount(name) {
@@ -156,17 +166,26 @@ function onSaveAccount() {
 }
 
 function onSearchInput(event) {
-  renderAccounts();
+  if (event.keyCode) {
+    renderAccounts();
+  }
 }
 
-function onSetSortBy(event = {}) {
+function onShowAccounts() {
+  onSortAccounts();
+  bodyWrapper.className = "show-accounts";
+  timerFrame.setAttribute("src", "");
+  backButton.style.display = "none";
+  barUnderlay.style.display = "none";
+  localStorage['account-name'] = "";
+}
+
+function onSortAccounts(event = {}) {
   let { target } = event;
 
   sortBySet = localStorage['sort-by-name'] === "true";
 
-  if (!target && sortBySet) target = sortNameButton;
-
-  if (!target) return;
+  if (!target) target = sortBySet ? sortNameButton : sortRecentButton;
 
   const { previousElementSibling, nextElementSibling } = target;
 
@@ -180,14 +199,6 @@ function onSetSortBy(event = {}) {
   sibling.className = "pill";
 
   renderAccounts();
-}
-
-function onShowAccounts() {
-  bodyWrapper.className = "show-accounts";
-  timerFrame.setAttribute("src", "");
-  backButton.style.display = "none";
-  barUnderlay.style.display = "none";
-  localStorage['account-name'] = "";
 }
 
 function onUpdateAccount(options = {}) {
@@ -326,13 +337,3 @@ function toggleEdit(show = true) {
     }
   }, 1);
 }
-
-// Add the header to allow content to be iframed
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  (details) => {
-    details.requestHeaders.push({ name: "X-Freckle-Flags", value: "allow-iframe" });
-    return { requestHeaders: details.requestHeaders };
-  },
-  { urls: ["<all_urls>"] },
-  ["blocking", "requestHeaders"]
-);
