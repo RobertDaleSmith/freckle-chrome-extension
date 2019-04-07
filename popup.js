@@ -34,6 +34,7 @@ function init() {
 
   initFrameHeader();
   localStorageFix();
+
   if (!accountName) onShowAccounts();
   else onOpenAccount(accountName);
 
